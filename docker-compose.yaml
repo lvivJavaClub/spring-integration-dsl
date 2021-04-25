@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  test-db:
+    image: debezium/postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: spring_integration
+    ports:
+      - 10001:5432
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 10025:1025
+      - 18025:8025
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
